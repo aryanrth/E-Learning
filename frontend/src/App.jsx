@@ -6,6 +6,7 @@ import Header from "./components/header/Header";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Verify from "./pages/auth/Verify";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Verify" element={<Verify />} />
-        </Routes>
+          </Routes>
+       <Footer/>
       </BrowserRouter>
     </>
   );
