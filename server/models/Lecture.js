@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
-const schema = new mongoose({
+const schema = new mongoose.Schema({
   title: {
+    type: String,
+    required: true,
+  },
+  description: {
     type: String,
     required: true,
   },
@@ -9,7 +13,7 @@ const schema = new mongoose({
     required: true,
   },
   course: {
-    type: mongoose.Schema.Type.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Courses",
     required: true,
   },
@@ -18,4 +22,4 @@ const schema = new mongoose({
     default: Date.now,
   },
 });
-export const Lecture = mongoose.model("lecture", schema);
+export const Lecture = mongoose.model("Lecture", schema);

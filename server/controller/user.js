@@ -1,8 +1,16 @@
-import { User } from "../models/user.js";
+import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import sendMail from "../middlewares/sendMail.js";
 import TryCatch from "../middlewares/TryCatch.js";
+
+// export const register = async (req, res) => {
+//   try {
+//     res.send("register");
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
 export const register = TryCatch(async (req, res) => {
   const { email, name, password } = req.body;
@@ -12,7 +20,7 @@ export const register = TryCatch(async (req, res) => {
   user = {
     name,
     email,
-    password,
+    password: hashPassword,
   };
   const otp = Math.floor(Math.random() * 1000000);
   const activationToken = jwt.sign(
@@ -29,7 +37,7 @@ export const register = TryCatch(async (req, res) => {
     name,
     otp,
   };
-  await sendMail(email, "E-learning", data);
+  await sendMail(email, "Elearning", data);
   res.status(200).json({
     message: "otp is send to our mail",
     activationToken,
@@ -68,7 +76,7 @@ export const loginUser = TryCatch(async (req, res) => {
       message: "wrong password",
     });
   const token = jwt.sign({ _id: user._id }, process.env.Jwt_Sec, {
-    expireIn: "15d",
+    expiresIn: "15d",
   });
   res.json({
     message: `Welcome back ${user.name}`,

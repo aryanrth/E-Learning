@@ -9,6 +9,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image:{
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,
@@ -22,7 +26,7 @@ const schema = new mongoose.Schema({
     required: true,
   },
   createdBy: {
-    type: Date,
+    type: String,
     required: true,
   },
   createdAt: {
